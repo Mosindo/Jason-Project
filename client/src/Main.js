@@ -47,8 +47,24 @@ export const Main = () => {
         <>
             <Header />
 
-            <Typography>App.js test </Typography>
-            <input
+            <Typography variant="h2">Ajouter un(e) Argonaute </Typography>
+            <form class="new-member-form">
+                <label for="name">Nom de l&apos;Argonaute</label>
+                <input
+                    type="text"
+                    name="firstname"
+                    placeholder="firstname"
+                    onChange={handleChange}
+                ></input>
+                <input
+                    type="text"
+                    name="lastname"
+                    placeholder="lastname"
+                    onChange={handleChange}
+                ></input>
+                <button onClick={() => AddExplorerToTheList()}>Add a new explorer!</button>
+            </form>
+            {/* <input
                 type="text"
                 name="firstname"
                 placeholder="firstname"
@@ -59,14 +75,15 @@ export const Main = () => {
                 name="lastname"
                 placeholder="lastname"
                 onChange={handleChange}
-            ></input>
-            <button onClick={() => AddExplorerToTheList()}>Add a new explorer!</button>
+            ></input> */}
+
             <AllExplorers
                 explorerList={explorerList}
                 handleChange={handleChange}
                 updateExplorerFromTheList={updateExplorerFromTheList}
                 deleteExplorerFromTheList={deleteExplorerFromTheList}
             />
+
             <Footer />
         </>
     );
