@@ -8,11 +8,9 @@ const router = express.Router();
 export const getAllExplorers = async (req, res) => {
     const Explorers = await explorer.find();
     if (!Explorers) return res.status(204).json({ message: 'No Explorers found.' });
-    res.json(Explorers);
+
     try {
-        const explorers = await explorer.find();
-        console.log(explorers);
-        res.status(200).json();
+        res.status(200).json(Explorers);
     } catch (err) {
         res.status(404).json({ message: err.message });
     }
@@ -57,14 +55,18 @@ export const updateExplorer = async (req, res) => {
     // res.json(result);
     const { id } = req.params;
     const { firstname, lastname } = req.body;
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id))
+            return res.status(404).send(`No post with id: ${id}`);
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+        const updatedExplorer = { firstname, lastname, _id: id };
 
-    const updatedExplorer = { firstname, lastname, _id: id };
+        await explorer.findByIdAndUpdate(id, updatedExplorer, { new: true });
 
-    await explorer.findByIdAndUpdate(id, updatedExplorer, { new: true });
-
-    res.json(updatedExplorer);
+        res.json(updatedExplorer);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 };
 
 export const deleteExplorer = async (req, res) => {
