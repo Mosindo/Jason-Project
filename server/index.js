@@ -19,7 +19,7 @@ app.use(cors());
 app.use('/', explorerRoutes);
 
 const CONNECTION_URL =
-    'mongodb+srv://mosindo:vzFOm2cGMc5Uthhm@cluster0.ll5zn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+    'mongodb+srv://mosindo:SoLM0NiJubHEebrw@cluster0.ll5zn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
 // connection to the database
 mongoose
