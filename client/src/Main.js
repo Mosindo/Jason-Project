@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
+import AllExplorers from './components/AllExplorers';
 import Header from './components/Header';
-import  Footer from './components/Footer'
+import Footer from './components/Footer';
 import axios from 'axios';
 
 export const Main = () => {
@@ -60,27 +61,12 @@ export const Main = () => {
                 onChange={handleChange}
             ></input>
             <button onClick={() => AddExplorerToTheList()}>Add a new explorer!</button>
-            {Object.entries(explorerList).map(([key, val]) => (
-                <>
-                    <Typography key={key}>
-                        {val.lastname} {val.firstname}
-                    </Typography>
-                    <input
-                        type="text"
-                        name="firstname"
-                        placeholder="firstname"
-                        onChange={handleChange}
-                    ></input>
-                    <input
-                        type="text"
-                        name="lastname"
-                        placeholder="lastname"
-                        onChange={handleChange}
-                    ></input>
-                    <button onClick={() => updateExplorerFromTheList(val._id)}>update</button>
-                    <button onClick={() => deleteExplorerFromTheList(val._id)}>delete</button>
-                </>
-            ))}
+            <AllExplorers
+                explorerList={explorerList}
+                handleChange={handleChange}
+                updateExplorerFromTheList={updateExplorerFromTheList}
+                deleteExplorerFromTheList={deleteExplorerFromTheList}
+            />
             <Footer />
         </>
     );
