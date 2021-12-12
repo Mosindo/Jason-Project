@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
-import AllExplorers from './components/AllExplorers';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import AllExplorers from '../components/AllExplorers';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import axios from 'axios';
 
-export const Main = () => {
+const Main = () => {
     const [explorerList, setExplorerList] = useState([]);
     const [inputValue, setInputValue] = useState({
         firstname: '',
@@ -88,3 +88,5 @@ export const Main = () => {
         </div>
     );
 };
+
+export default Main;

@@ -19,7 +19,13 @@ const useStyles = makeStyles((theme) => ({
 const AllExplorers = (props) => {
     const classes = useStyles();
     return (
-        <Grid container flexDirection="row" alignItems="center" justifyContent="flex-start">
+        <Grid
+            container
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="flex-start"
+            gutterbottom
+        >
             {Object.entries(props.explorerList).map(([key, val]) => (
                 <Grid item md={4} wrap="wrap" spacing={5}>
                     <Paper className={classes.Paper} elevation={3}>
