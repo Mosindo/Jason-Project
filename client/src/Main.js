@@ -44,10 +44,10 @@ export const Main = () => {
     };
 
     return (
-        <>
+        <div>
             <Header />
 
-            <Typography variant="h2">Ajouter un(e) Argonaute </Typography>
+            <Typography variant="h4">Ajouter un(e) Argonaute </Typography>
             <form class="new-member-form">
                 <label for="name">Nom de l&apos;Argonaute</label>
                 <input
@@ -85,6 +85,6 @@ export const Main = () => {
             />
 
             <Footer />
-        </>
+        </div>
     );
 };

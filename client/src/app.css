@@ -23,11 +23,16 @@ header h1 {
 }
 
 footer {
-    background: ;
+    margin-top: 2em;
+    text-align: center;
+    color: #fff;
+    background: #f76c6c;
+    padding: 0.25em 0;
 }
 
 h1,
-h2 {
+h2,
+h4 {
     text-align: center;
 }
 
@@ -55,5 +60,4 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    
 }

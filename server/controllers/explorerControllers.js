@@ -1,9 +1,6 @@
-import express from 'express';
 import mongoose from 'mongoose';
 
 import explorer from '../models/explorer.js';
-
-const router = express.Router();
 
 export const getAllExplorers = async (req, res) => {
     const Explorers = await explorer.find();
@@ -101,5 +98,3 @@ export const getExplorer = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
-
-export default router;
