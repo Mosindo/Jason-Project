@@ -9,10 +9,9 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Main />}>
-                    <Route index element={<UpdateExplorer />} />
-                    <Route path="*" element={<NoMatch />} />
-                </Route>
+                <Route path="/" element={<Main />} />
+                <Route path="/update/:id" element={<UpdateExplorer />} />
+                <Route path="*" element={<NoMatch />} />
             </Routes>
         </>
     );

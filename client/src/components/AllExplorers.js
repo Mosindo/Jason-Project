@@ -4,6 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import makeStyles from '@mui/styles/makeStyles';
 import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
 // import { Box } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,32 +28,17 @@ const AllExplorers = (props) => {
             gutterbottom
         >
             {Object.entries(props.explorerList).map(([key, val]) => (
-                <Grid item md={4} wrap="wrap" spacing={5}>
+                <Grid item md={4} wrap="wrap" spacing={10}>
                     <Paper className={classes.Paper} elevation={3}>
                         <Typography key={key}>
                             {val.lastname} {val.firstname}
                         </Typography>
-                        <input
-                            type="text"
-                            name="firstname"
-                            placeholder="firstname"
-                            onChange={props.handleChange}
-                        ></input>
-                        <input
-                            type="text"
-                            name="lastname"
-                            placeholder="lastname"
-                            onChange={props.handleChange}
-                        ></input>
                         <Box>
-                            <IconButton
-                                variant="contained"
-                                onClick={() => props.updateExplorerFromTheList(val._id)}
-                                color="primary"
-                                size="small"
-                            >
-                                <EditIcon fontSize="" />
-                            </IconButton>
+                            <Link to={`/update/${val._id}`}>
+                                <IconButton variant="contained" color="primary" size="small">
+                                    <EditIcon fontSize="" />
+                                </IconButton>
+                            </Link>
                             <IconButton
                                 variant="contained"
                                 onClick={() => props.deleteExplorerFromTheList(val._id)}

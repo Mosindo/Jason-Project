@@ -64,18 +64,6 @@ const Main = () => {
                 ></input>
                 <button onClick={() => AddExplorerToTheList()}>Add a new explorer!</button>
             </form>
-            {/* <input
-                type="text"
-                name="firstname"
-                placeholder="firstname"
-                onChange={handleChange}
-            ></input>
-            <input
-                type="text"
-                name="lastname"
-                placeholder="lastname"
-                onChange={handleChange}
-            ></input> */}
 
             <AllExplorers
                 explorerList={explorerList}
