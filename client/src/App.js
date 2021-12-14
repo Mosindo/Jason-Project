@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Outlet, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Main from './Pages/Main';
 import NoMatch from './Pages/NoMatch';
 import UpdateExplorer from './Pages/UpdateExplorer';

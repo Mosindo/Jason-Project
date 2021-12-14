@@ -22,11 +22,13 @@ const UpdateExplorer = () => {
     }, [id]);
 
     const updateExplorerFromTheList = (id) => {
-        axios.patch(`http://localhost:5000/${id}`, {
-            _id: id,
-            firstname: inputValue.firstname,
-            lastname: inputValue.lastname,
-        });
+        axios
+            .patch(`http://localhost:5000/${id}`, {
+                _id: id,
+                firstname: inputValue.firstname,
+                lastname: inputValue.lastname,
+            })
+            
     };
 
     const handleChange = (event) => {
@@ -41,8 +43,8 @@ const UpdateExplorer = () => {
             <Header />
             <Container>
                 <Typography>
-                Êtes-vous sûr de vouloir modifier les information concernant ce bon Argonaute
-                    : {data.firstname} {data.lastname}
+                    Êtes-vous sûr de vouloir modifier les information concernant ce bon Argonaute :{' '}
+                    {data.firstname} {data.lastname}
                 </Typography>
                 <input
                     type="text"
