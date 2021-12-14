@@ -41,7 +41,7 @@ const UpdateExplorer = () => {
             <Header />
             <Container>
                 <Typography>
-                    Etes-vous sure de vouloir modifier les information concernant ce bon explorateur
+                Êtes-vous sûr de vouloir modifier les information concernant ce bon Argonaute
                     : {data.firstname} {data.lastname}
                 </Typography>
                 <input

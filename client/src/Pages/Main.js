@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography } from '@mui/material';
+import { Typography, TextField, Button, Box } from '@mui/material';
 import AllExplorers from '../components/AllExplorers';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -23,6 +23,7 @@ const Main = () => {
             firstname: inputValue.firstname,
             lastname: inputValue.lastname,
         });
+        setInputValue({ firstname: '', lastname: '' });
     };
     const updateExplorerFromTheList = (id) => {
         axios.patch(`http://localhost:5000/${id}`, {
@@ -37,6 +38,7 @@ const Main = () => {
     };
 
     const handleChange = (event) => {
+        event.preventDefault();
         setInputValue({
             ...inputValue,
             [event.target.name]: event.target.value,
@@ -50,19 +52,34 @@ const Main = () => {
             <Typography variant="h4">Ajouter un(e) Argonaute </Typography>
             <form class="new-member-form">
                 <label for="name">Nom de l&apos;Argonaute</label>
-                <input
-                    type="text"
-                    name="firstname"
-                    placeholder="firstname"
-                    onChange={handleChange}
-                ></input>
-                <input
-                    type="text"
-                    name="lastname"
-                    placeholder="lastname"
-                    onChange={handleChange}
-                ></input>
-                <button onClick={() => AddExplorerToTheList()}>Add a new explorer!</button>
+                <Box display="flex" flexDirection="column" alignItems="center">
+                    <TextField
+                        id="firstname"
+                        label="firstname"
+                        variant="outlined"
+                        name="firstname"
+                        onChange={handleChange}
+                        margin="dense"
+                        value={inputValue.firstname}
+                    />
+                    <TextField
+                        id="lastname"
+                        label="lastname"
+                        variant="outlined"
+                        name="lastname"
+                        onChange={handleChange}
+                        margin="dense"
+                        value={inputValue.lastname}
+                    />
+                    <Button
+                        variant="contained"
+                        onClick={() => AddExplorerToTheList()}
+                        size="large"
+                        margin="dense"
+                    >
+                        Ajouter
+                    </Button>
+                </Box>
             </form>
 
             <AllExplorers

@@ -38,18 +38,6 @@ export const createNewExplorer = async (req, res) => {
 };
 
 export const updateExplorer = async (req, res) => {
-    // if (!req?.body?.id) {
-    //     return res.status(400).json({ message: 'ID parameter is required.' });
-    // }
-
-    // const Explorer = await explorer.findOne({ _id: req.body.id }).exec();
-    // if (!Explorer) {
-    //     return res.status(204).json({ message: `No Explorer matches ID ${req.body.id}.` });
-    // }
-    // if (req.body?.firstname) Explorer.firstname = req.body.firstname;
-    // if (req.body?.lastname) Explorer.lastname = req.body.lastname;
-    // const result = await Explorer.save();
-    // res.json(result);
     const { id } = req.params;
     const { firstname, lastname } = req.body;
     try {

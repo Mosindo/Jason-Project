@@ -12,8 +12,11 @@ const useStyles = makeStyles((theme) => ({
         width: 'auto',
         display: 'flex',
         padding: '1em',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         margin: '1em',
+    },
+    nameInput: {
+        alignItems: 'flex-start',
     },
 }));
 
