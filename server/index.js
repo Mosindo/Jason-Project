@@ -5,7 +5,7 @@ import cors from 'cors';
 import explorerRoutes from './routes/explorers.js';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '././config.env' });
+dotenv.config();
 
 const CONNECTION_URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 5000;
