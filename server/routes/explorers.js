@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 
 // API
-router.get('/api', getAllExplorers);
-router.post('/api', createNewExplorer);
-router.get('/api/:id', getExplorer);
-router.patch('/api/:id', updateExplorer);
-router.delete('/api/:id', deleteExplorer);
+router.get('/', getAllExplorers);
+router.post('/', createNewExplorer);
+router.get('/:id', getExplorer);
+router.patch('/:id', updateExplorer);
+router.delete('/:id', deleteExplorer);
 
 export default router;

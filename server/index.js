@@ -24,16 +24,6 @@ app.use(cors());
 // routes
 app.use('/api', explorerRoutes);
 
-app.use(express.static(path.join(__dirname, '/build')));
-
-app.get('/', function (_, res) {
-    res.sendFile(path.join(__dirname, '/build/index.html'), function (err) {
-        if (err) {
-            res.status(500).send(err);
-        }
-    });
-});
-
 // connection to the database
 mongoose
     .connect(CONNECTION_URL, {
