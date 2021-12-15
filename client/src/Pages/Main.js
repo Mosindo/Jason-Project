@@ -74,7 +74,7 @@ const Main = () => {
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <TextField
                         id="firstname"
-                        label="firstname"
+                        label="Prénom"
                         variant="outlined"
                         name="firstname"
                         onChange={handleChange}
@@ -83,7 +83,7 @@ const Main = () => {
                     />
                     <TextField
                         id="lastname"
-                        label="lastname"
+                        label="Nom"
                         variant="outlined"
                         name="lastname"
                         onChange={handleChange}
