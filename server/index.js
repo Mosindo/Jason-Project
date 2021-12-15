@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import explorerRoutes from './routes/explorers.js';
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
 
@@ -21,7 +22,17 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // routes
-app.use('/', explorerRoutes);
+app.use('/api', explorerRoutes);
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (_, res) {
+    res.sendFile(path.join(__dirname, 'build/index.html'), function (err) {
+        if (err) {
+            res.status(500).send(err);
+        }
+    });
+});
 
 // connection to the database
 mongoose

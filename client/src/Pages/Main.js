@@ -5,6 +5,9 @@ import AllExplorers from '../components/AllExplorers';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const useStyles = makeStyles({
     error: {
@@ -22,7 +25,7 @@ const Main = () => {
     const classes = useStyles();
 
     useEffect(() => {
-        axios.get('http://localhost:5000/').then(function (response) {
+        axios.get(process.env.REACT_APP_URI).then(function (response) {
             setExplorerList(response.data);
         });
     }, [explorerList]);
@@ -30,7 +33,7 @@ const Main = () => {
     const AddExplorerToTheList = () => {
         SetError(true);
         axios
-            .post('http://localhost:5000/', {
+            .post(process.env.REACT_APP_URI, {
                 firstname: inputValue.firstname,
                 lastname: inputValue.lastname,
             })
@@ -42,7 +45,7 @@ const Main = () => {
         setInputValue({ firstname: '', lastname: '' });
     };
     const updateExplorerFromTheList = (id) => {
-        axios.patch(`http://localhost:5000/${id}`, {
+        axios.patch(`${process.env.REACT_APP_URI}${id}`, {
             _id: id,
             firstname: inputValue.firstname,
             lastname: inputValue.lastname,
@@ -50,7 +53,7 @@ const Main = () => {
     };
 
     const deleteExplorerFromTheList = (id) => {
-        axios.delete(`http://localhost:5000/${id}`);
+        axios.delete(`${process.env.REACT_APP_URI}${id}`);
     };
 
     const handleChange = (event) => {

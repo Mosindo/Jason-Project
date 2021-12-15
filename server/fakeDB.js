@@ -1,10 +1,13 @@
 import explorer from './models/explorer.js';
 import mongoose from 'mongoose';
 import faker from 'faker';
+import dotenv from 'dotenv';
 
-const CONNECTION_URL =
-    'mongodb+srv://mosindo:SoLM0NiJubHEebrw@cluster0.ll5zn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+dotenv.config();
+
+const CONNECTION_URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 5000;
+
 // connection to the database
 mongoose
     .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -22,6 +25,7 @@ for (let i = 0; i < 50; i++) {
     });
 }
 const generateFakeData = async () => {
+    //delete current database data and  create new data
     await explorer.deleteMany({}).exec();
     await explorer.create(explorers);
 };

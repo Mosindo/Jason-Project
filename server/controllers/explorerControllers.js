@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 import explorer from '../models/explorer.js';
 
+// function retrieve and return all users
 export const getAllExplorers = async (req, res) => {
     const Explorers = await explorer.find();
     if (!Explorers) return res.status(204).json({ message: 'No Explorers found.' });
@@ -13,6 +14,7 @@ export const getAllExplorers = async (req, res) => {
     }
 };
 
+// function to create new user
 export const createNewExplorer = async (req, res) => {
     if (!req?.body?.firstname || !req?.body?.lastname) {
         return res.status(400).json({ message: 'firstname and last lastname are required' });
@@ -37,6 +39,7 @@ export const createNewExplorer = async (req, res) => {
     }
 };
 
+// function to update user
 export const updateExplorer = async (req, res) => {
     const { id } = req.params;
     const { firstname, lastname } = req.body;
@@ -54,6 +57,7 @@ export const updateExplorer = async (req, res) => {
     }
 };
 
+// function to update user
 export const deleteExplorer = async (req, res) => {
     const { id } = req.params;
 
@@ -69,13 +73,6 @@ export const deleteExplorer = async (req, res) => {
 };
 
 export const getExplorer = async (req, res) => {
-    // if (!req?.params?.id) return res.status(400).json({ message: 'Employee ID required.' });
-    // try {
-    //     const explorer = await explorer.findOne({ _id: req.params.id }).exec();
-    //     res.status(200).json(explorer);
-    // } catch (err) {
-    //     res.status(404).json({ message: err.message });
-    // }
     const { id } = req.params;
 
     try {
