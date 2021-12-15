@@ -14,16 +14,23 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(
+    bodyParser.json({
+        extended: true,
+    }),
+);
+app.use(
     bodyParser.urlencoded({
         extended: true,
     }),
 );
-app.use(bodyParser.json());
 app.use(cors());
 
 // routes
 app.use('/api', explorerRoutes);
 
+app.get('/', (req, res) => {
+    res.sendFile('bro you did it!');
+});
 // connection to the database
 mongoose
     .connect(CONNECTION_URL, {
