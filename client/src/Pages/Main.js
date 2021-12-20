@@ -44,13 +44,6 @@ const Main = () => {
             });
         setInputValue({ firstname: '', lastname: '' });
     };
-    const updateExplorerFromTheList = (id) => {
-        axios.patch(`${process.env.REACT_APP_URI}${id}`, {
-            _id: id,
-            firstname: inputValue.firstname,
-            lastname: inputValue.lastname,
-        });
-    };
 
     const deleteExplorerFromTheList = (id) => {
         axios.delete(`${process.env.REACT_APP_URI}/${id}`);
@@ -107,7 +100,6 @@ const Main = () => {
             <AllExplorers
                 explorerList={explorerList}
                 handleChange={handleChange}
-                updateExplorerFromTheList={updateExplorerFromTheList}
                 deleteExplorerFromTheList={deleteExplorerFromTheList}
             />
 
