@@ -15,13 +15,13 @@ const UpdateExplorer = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/${id}`).then(function (response) {
+        axios.get(`${process.env.REACT_APP_URI}/${id}`).then(function (response) {
             setData(response.data);
         });
     }, [id]);
 
     const updateExplorerFromTheList = (id) => {
-        axios.patch(`http://localhost:5000/${id}`, {
+        axios.patch(`${process.env.REACT_APP_URI}/${id}`, {
             _id: id,
             firstname: inputValue.firstname,
             lastname: inputValue.lastname,

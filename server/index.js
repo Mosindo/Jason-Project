@@ -8,7 +8,6 @@ import path from 'path';
 
 dotenv.config();
 
-const CONNECTION_URL = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -28,12 +27,23 @@ app.use(cors());
 // routes
 app.use('/api', explorerRoutes);
 
-app.get('/', (req, res) => {
-    res.sendFile('bro you did it!');
-});
+// deployement
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/build')));
+
+    app.get('*', (req, res) =>
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html')),
+    );
+} else {
+    app.get('/', (req, res) => {
+        res.send('API is running..');
+    });
+}
 // connection to the database
 mongoose
-    .connect(CONNECTION_URL, {
+    .connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
