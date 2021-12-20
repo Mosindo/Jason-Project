@@ -44,7 +44,9 @@ const AllExplorers = (props) => {
                             </Link>
                             <IconButton
                                 variant="contained"
-                                onClick={() => props.deleteExplorerFromTheList(val._id)}
+                                onClick={() => {
+                                    props.deleteExplorerFromTheList(val._id);
+                                }}
                                 color="error"
                                 size="small"
                             >
