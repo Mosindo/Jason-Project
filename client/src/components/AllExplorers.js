@@ -36,7 +36,6 @@ const AllExplorers = (props) => {
                         <Typography key={key}>
                             {val.lastname} {val.firstname}
                         </Typography>
-
                         <Box>
                             <Link to={`/update/${val._id}`}>
                                 <IconButton variant="contained" color="primary" size="small">
