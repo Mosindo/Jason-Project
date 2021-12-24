@@ -46,6 +46,7 @@ const Main = () => {
     };
 
     const deleteExplorerFromTheList = (id) => {
+        
         axios.delete(`${process.env.REACT_APP_URI}/${id}`);
     };
 
