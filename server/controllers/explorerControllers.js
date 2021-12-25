@@ -62,14 +62,9 @@ export const deleteExplorer = async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-    try {
-        await explorer.deleteOne({ _id: id });
+    await explorer.findByIdAndRemove(id);
 
-        res.json({ message: 'explorer deleted successfully.' });
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-        console.error(err);
-    }
+    res.json({ message: 'explorer deleted successfully.' });
 };
 
 export const getExplorer = async (req, res) => {
