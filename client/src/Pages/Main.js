@@ -60,7 +60,7 @@ const Main = () => {
 
     const deleteExplorerFromTheList = (id) => {
         axios
-            .delete(`${process.env.REACT_APP_URI}/${id}`)
+            .delete(`${process.env.REACT_APP_URI}/${id}`, { _id: id })
             .then(() => {
                 alert('Post deleted!');
             })
@@ -125,9 +125,9 @@ const Main = () => {
                 gutterbottom
             >
                 {Object.entries(explorerList).map(([key, val]) => (
-                    <Grid item md={4} wrap="wrap" spacing={10}>
+                    <Grid item md={4} wrap="wrap" spacing={10} key={key}>
                         <Paper className={classes.Paper} elevation={3}>
-                            <Typography key={key}>
+                            <Typography>
                                 {val.lastname} {val.firstname}
                             </Typography>
                             <Box>

@@ -60,7 +60,7 @@ export const updateExplorer = async (req, res) => {
 // function to update user
 export const deleteExplorer = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id))
-        return res.status(400).send('ID unknown : ' + req.params.id);
+        return res.status(404).send('ID unknown : ' + req.params.id);
 
     try {
         await explorer.remove({ _id: req.params.id }).exec();
