@@ -59,12 +59,16 @@ export const updateExplorer = async (req, res) => {
 
 // function to update user
 export const deleteExplorer = async (req, res) => {
-    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(req.params.id))
+        return res.status(400).send('ID unknown : ' + req.params.id);
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-    await explorer.findByIdAndRemove(id);
+    try {
+        await explorer.remove({ _id: req.params.id }).exec();
 
-    res.json({ message: 'explorer deleted successfully.' });
+        res.status(200).json({ message: 'Successfully deleted. ' });
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 };
 
 export const getExplorer = async (req, res) => {

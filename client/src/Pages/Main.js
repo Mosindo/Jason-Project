@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, TextField, Button, Box } from '@mui/material';
+import { Typography, TextField, Button, Box, IconButton, Paper, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import AllExplorers from '../components/AllExplorers';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import { Link } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-dotenv.config();
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+    Paper: {
+        width: 'auto',
+        display: 'flex',
+        padding: '1em',
+        justifyContent: 'space-between',
+        margin: '1em',
+    },
+    nameInput: {
+        alignItems: 'flex-start',
+    },
     error: {
         color: 'red',
     },
-});
+}));
+
+dotenv.config();
+
 const Main = () => {
     const [explorerList, setExplorerList] = useState([]);
     const [error, SetError] = useState(true);
@@ -46,7 +59,14 @@ const Main = () => {
     };
 
     const deleteExplorerFromTheList = (id) => {
-        axios.delete(`/${process.env.REACT_APP_URI}/${id}`);
+        axios
+            .delete(`${process.env.REACT_APP_URI}/${id}`)
+            .then(() => {
+                alert('Post deleted!');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     const handleChange = (event) => {
@@ -97,11 +117,40 @@ const Main = () => {
                 </Box>
             </form>
 
-            <AllExplorers
-                explorerList={explorerList}
-                handleChange={handleChange}
-                deleteExplorerFromTheList={deleteExplorerFromTheList}
-            />
+            <Grid
+                container
+                flexDirection="row"
+                alignItems="center"
+                justifyContent="flex-start"
+                gutterbottom
+            >
+                {Object.entries(explorerList).map(([key, val]) => (
+                    <Grid item md={4} wrap="wrap" spacing={10}>
+                        <Paper className={classes.Paper} elevation={3}>
+                            <Typography key={key}>
+                                {val.lastname} {val.firstname}
+                            </Typography>
+                            <Box>
+                                <Link to={`/update/${val._id}`}>
+                                    <IconButton variant="contained" color="primary" size="small">
+                                        <EditIcon fontSize="" />
+                                    </IconButton>
+                                </Link>
+                                <IconButton
+                                    variant="contained"
+                                    onClick={() => {
+                                        deleteExplorerFromTheList(val._id);
+                                    }}
+                                    color="error"
+                                    size="small"
+                                >
+                                    <DeleteIcon fontSize="small" />
+                                </IconButton>
+                            </Box>
+                        </Paper>
+                    </Grid>
+                ))}
+            </Grid>
 
             <Footer />
         </div>
