@@ -22,6 +22,7 @@ export const createNewExplorer = async (req, res) => {
 
     const { firstname, lastname } = req.body;
 
+    
     // check for duplicate usernames in the db
     const duplicate = await explorer.findOne({ firstname: firstname, lastname: lastname }).exec();
     if (duplicate) return res.sendStatus(409); //Conflict
